@@ -4,3 +4,4 @@ streamlit
 faiss_cpu
 huggingface_hub
 sentence-transformers
+pydantic==1.10.9

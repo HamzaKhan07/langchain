@@ -16,7 +16,7 @@ def load_result(query):
     # move imports inside the function
 
     embeddings = GooglePalmEmbeddings(google_api_key='AIzaSyAhdjQL0ziAiWe9ZSFhG2tEn4hGKpis_p4')
-    vectordb = FAISS.load_local('faiss_index', embeddings)
+    vectordb = FAISS.load_local('palm_index', embeddings)
     retriever = vectordb.as_retriever(score_threshold=0.7)
 
     # question answer chain

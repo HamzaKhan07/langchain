@@ -9,11 +9,10 @@ st.header("Talk with PDF")
 
 
 def load_result():
-    embeddings = HuggingFaceEmbeddings()
-    vectordb = FAISS.load_local('faiss_index', embeddings)
-
     # load garbage collector
     gc.enable()
+    embeddings = HuggingFaceEmbeddings()
+    vectordb = FAISS.load_local('faiss_index', embeddings)
 
     # question answer chain
     llm = HuggingFaceHub(repo_id="google/flan-ul2", huggingfacehub_api_token="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")

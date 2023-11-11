@@ -1,7 +1,10 @@
 import streamlit as st
 import gc
+import os, glob
+from dotenv import load_dotenv
 
 st.header("Talk with PDF")
+load_dotenv()
 
 
 def load_result(query):
@@ -15,12 +18,12 @@ def load_result(query):
 
     # move imports inside the function
 
-    embeddings = GooglePalmEmbeddings(google_api_key='AIzaSyAhdjQL0ziAiWe9ZSFhG2tEn4hGKpis_p4')
+    embeddings = GooglePalmEmbeddings()
     vectordb = FAISS.load_local('palm_index', embeddings)
     retriever = vectordb.as_retriever(score_threshold=0.7)
 
     # question answer chain
-    llm = GooglePalm(google_api_key='AIzaSyAhdjQL0ziAiWe9ZSFhG2tEn4hGKpis_p4')
+    llm = GooglePalm()
     chain = RetrievalQA.from_chain_type(llm=llm, chain_type='stuff', retriever=retriever)
 
     response = chain(query)
